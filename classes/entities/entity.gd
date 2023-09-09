@@ -1,8 +1,5 @@
-extends Node
+extends CharacterBody2D
 class_name Entity
-
-@onready var animation: AnimationPlayer = get_node("animation")
-@onready var collision: CollisionShape2D = get_node("collision")
 
 @export var life_points: int
 @export var speed: int
@@ -15,18 +12,27 @@ const State = {
 	Idle = 2
 }
 
+@onready var animation: AnimationPlayer = get_node("animation")
+@onready var collision: CollisionShape2D = get_node("collision")
+@onready var default_gravity: float = ProjectSettings.get_setting("physics/2d/default_gravity", 0) as float
+
+var can_die: bool = false
 var current_state: int = State.Idle
 
-func _ready():
-	pass 
-
 func _process(delta):
-	if life_points <= 0:
-		dies()
-		return
+	disposer()
+	apply_gravity(delta)
 	move_behavior(delta)
 	action_behavior(delta)
+	move_and_slide()
 
+func disposer() -> void:
+	if can_die && current_state!=State.Dead:
+		dies()
+		return
+
+func apply_gravity(delta: float) -> void:
+	velocity.y += delta*default_gravity*weight
 
 func move_behavior(_delta: float) -> void:
 	pass

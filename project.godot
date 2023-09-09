@@ -11,10 +11,33 @@ config_version=5
 [application]
 
 config/name="JumponFruits"
+run/main_scene="res://scenes/levels/level.tscn"
 config/features=PackedStringArray("4.1", "GL Compatibility")
+run/max_fps=60
 config/icon="res://icon.svg"
+
+[display]
+
+window/size/viewport_width=240
+window/size/viewport_height=160
+window/size/window_width_override=1920
+window/size/window_height_override=1280
+window/stretch/mode="viewport"
+window/per_pixel_transparency/allowed=true
+
+[layer_names]
+
+2d_render/layer_1="Terrain"
+2d_render/layer_2="Entities"
+2d_physics/layer_1="Terrain"
+2d_physics/layer_2="Entities"
+
+[physics]
+
+2d/physics_engine="GodotPhysics2D"
 
 [rendering]
 
+textures/canvas_textures/default_texture_filter=0
 renderer/rendering_method="gl_compatibility"
 renderer/rendering_method.mobile="gl_compatibility"

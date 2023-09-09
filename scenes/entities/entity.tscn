@@ -1,10 +1,17 @@
-[gd_scene load_steps=2 format=3 uid="uid://cifhrajdc2oat"]
+[gd_scene load_steps=3 format=3 uid="uid://cifhrajdc2oat"]
+
+[ext_resource type="Script" path="res://classes/entities/entity.gd" id="1_rqkny"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_bkyq3"]
 
 [node name="entity" type="CharacterBody2D"]
+light_mask = 0
+visibility_layer = 2
+script = ExtResource("1_rqkny")
 
 [node name="collision" type="CollisionShape2D" parent="."]
+light_mask = 0
+visibility_layer = 2
 shape = SubResource("RectangleShape2D_bkyq3")
 
 [node name="sprite" type="Sprite2D" parent="."]
