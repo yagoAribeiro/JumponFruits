@@ -16,4 +16,13 @@ The game JumponFruits maded by me with third party assets.
   <li>Class functions</li>
 </ul>
 
+<h2>Documenting</h2>
 <h3>Write comments and docummentate functions and expressions always as possible</h3>
+<h2>Git</h2>
+<h3>Always make commits in the next format:</h3>
+(main tag/complement tags...) [issue number] [description]
+<h4>Example: </h4> (new/progressing) #812 Created new enemy
+<h3>Tags</h3>
+<ul>
+  <li>new - When a new feature is maked</li>
+</ul>
