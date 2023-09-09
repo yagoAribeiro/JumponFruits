@@ -25,4 +25,8 @@ The game JumponFruits maded by me with third party assets.
 <h3>Tags</h3>
 <ul>
   <li>new - When a new feature is maked</li>
+  <li>progressing - When a new feature isn't complete yet</li>
+  <li>fixes - When there is bug fixes</li>
+  <li>remake - When there is a remake of an already existing feature</li>
+  <li>otimization - Code otimization</li>
 </ul>
