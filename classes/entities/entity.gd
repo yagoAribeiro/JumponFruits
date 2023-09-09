@@ -2,8 +2,7 @@ extends CharacterBody2D
 class_name Entity
 
 @export var life_points: int
-@export var speed: int
-@export var jump_force: int
+@export var speed: float
 @export var weight: float = 1.0
 
 const State = {
