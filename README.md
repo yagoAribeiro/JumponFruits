@@ -1,8 +1,7 @@
 # JumponFruits
 The game JumponFruits maded by me with third party assets.
-
+<h1>Good practices in code</h1>
 <h2>Class organization in GDscript for this project</h2>
-
 <ul>
   <li>Extends</li>
   <li>Class name</li>
@@ -16,3 +15,5 @@ The game JumponFruits maded by me with third party assets.
   <li>Override functions</li>
   <li>Class functions</li>
 </ul>
+
+<h3>Write comments and docummentate functions and expressions always as possible</h3>
