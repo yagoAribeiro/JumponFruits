@@ -3,9 +3,18 @@
 [ext_resource type="PackedScene" uid="uid://cifhrajdc2oat" path="res://scenes/entities/entity.tscn" id="1_n03l1"]
 [ext_resource type="Script" path="res://classes/entities/player/player.gd" id="2_vnnwx"]
 
-[node name="player" instance=ExtResource("1_n03l1")]
+[node name="player" node_paths=PackedStringArray("wall_direction", "wall_timer") instance=ExtResource("1_n03l1")]
 collision_layer = 2
 script = ExtResource("2_vnnwx")
 jump_force = 430.0
+wall_direction = NodePath("wallDirection")
+wall_timer = NodePath("wallTimer")
+total_wall_time = 5.0
 life_points = 1
 speed = 280.0
+
+[node name="wallDirection" type="RayCast2D" parent="." index="3"]
+target_position = Vector2(14, 0)
+
+[node name="wallTimer" type="Timer" parent="." index="4"]
+one_shot = true
