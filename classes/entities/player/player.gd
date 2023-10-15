@@ -6,6 +6,14 @@ class_name Player
 @export var wall_timer: Timer
 @export var total_wall_time: float = 5.0
 var jumps: int = 2
+var air_jump: bool = false
+
+func init_animations() -> void:
+	var geral_factor: Callable = func(): return 1
+	animation.set_animation("idle", func(): return current_state == State.Idle, 3, geral_factor)
+	animation.set_animation("move", func(): return current_state == State.Moving, 3, geral_factor)
+	animation.set_animation("jump", func(): return velocity.y <= up_direction.y, 2, geral_factor)
+	animation.set_animation("fall", func(): return current_state == State.Falling, 2, geral_factor)
 
 func move_behavior(delta:float) -> void:
 	super.move_behavior(delta)
@@ -25,18 +33,22 @@ func jump(_delta: float, on_wall: bool = false) -> void:
 		jumps -=1
 		if on_wall:
 			velocity.x = 430*-current_direction
+		if !is_on_floor() && !on_wall:
+			air_jump = true;
 
 
 func wall_sliding(delta:float) -> bool:
 	wall_direction.force_raycast_update()
-	if is_on_floor_only(): wall_timer.start(total_wall_time)
+	if is_on_floor_only(): 
+		wall_timer.start(total_wall_time)
+		return false
 	wall_timer.paused = true
-	var can_grab: bool =  is_on_wall_only() and velocity.x !=0 and velocity.y !=0 and velocity.y > up_direction.y
+	var can_grab: bool =  is_on_wall_only() and velocity.x !=0 and velocity.y !=0 and current_state == State.Falling
 	if  can_grab and wall_direction.is_colliding():
 		wall_timer.paused = false
 		if wall_timer.time_left > 0:
 			jumps = 1
-			velocity.y = abs(default_gravity-wall_timer.time_left*2)*3*delta
+			velocity.y = (-up_direction.y)*abs(default_gravity-wall_timer.time_left*2)*3*delta
 			return true
 	return false
 
