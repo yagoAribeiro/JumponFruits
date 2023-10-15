@@ -9,14 +9,22 @@ var jumps: int = 2
 var air_jump: bool = false
 
 func init_animations() -> void:
-	var geral_factor: Callable = func(): return 1
-	animation.set_animation("idle", func(): return current_state == State.Idle, 3, geral_factor)
-	animation.set_animation("move", func(): return current_state == State.Moving, 3, geral_factor)
-	animation.set_animation("jump", func(): return velocity.y <= up_direction.y, 2, geral_factor)
-	animation.set_animation("fall", func(): return current_state == State.Falling, 2, geral_factor)
+	var geral_factor: Callable = func(): return 1.7
+	animation.set_animation("idle", func(): return current_state == State.Idle, 4, geral_factor)
+	animation.set_animation("move", func(): return current_state == State.Moving, 4, geral_factor)
+	animation.set_animation("jump", func(): return velocity.y <= up_direction.y, 3, geral_factor)
+	animation.set_animation("fall", func(): return current_state == State.Falling, 3, geral_factor)
+	animation.set_animation("roll", func(): return air_jump, 1, geral_factor, func(): air_jump = false)
+	animation.set_animation("wall_right", 
+	func(): return is_on_wall_only() && !wall_timer.paused && wall_timer.time_left>0 && current_direction == LookDirection.Right, 
+		2, geral_factor)
+	animation.set_animation("wall_left", 
+	func(): return is_on_wall_only() && !wall_timer.paused && wall_timer.time_left>0 && current_direction == LookDirection.Left, 
+		2, geral_factor)
 
 func move_behavior(delta:float) -> void:
 	super.move_behavior(delta)
+	animation.update_animation()
 	wall_direction.target_position.x = abs(wall_direction.target_position.x)*current_direction
 	var direction:Vector2 = Vector2.ZERO
 	direction.x = int(Input.is_action_pressed("ui_right")) - int(Input.is_action_pressed("ui_left"))

@@ -52,7 +52,7 @@ func apply_gravity(delta: float) -> void:
 func move_behavior(_delta: float) -> void:
 	current_direction = LookDirection.Left if velocity.x < 0 else LookDirection.Right if velocity.x > 0 else current_direction
 	sprite.flip_h = current_direction == LookDirection.Left
-	if is_on_floor_only():
+	if is_on_floor():
 		current_state = State.Moving if velocity.x !=0 else State.Idle
 	elif velocity.y > up_direction.y && has_gravity:
 		current_state = State.Falling
