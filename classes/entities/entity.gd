@@ -57,6 +57,9 @@ func move_behavior(_delta: float) -> void:
 func action_behavior(_delta: float) -> void:
 	pass
 
+func hit(_hit_origin: Vector2 = Vector2.ZERO)-> void:
+	pass
+
 func dies() -> void:
 	if current_state != State.Dead:
 		current_state = State.Dead

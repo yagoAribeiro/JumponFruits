@@ -7,7 +7,8 @@ class_name Player
 @export var total_wall_time: float = 5.0
 var jumps: int = 2
 var air_jump: bool = false
-var hit: bool = false
+var hitted: bool = false
+var ragdoll: Ragdoll2D
 
 func init_animations() -> void:
 	var geral_factor: Callable = func(): return 1.7
@@ -22,12 +23,10 @@ func init_animations() -> void:
 	animation.set_animation("wall_left", 
 	func(): return is_on_wall_only() && !wall_timer.paused && wall_timer.time_left>0 && current_direction == LookDirection.Left, 
 		2, geral_factor)
-	animation.set_animation("hit", func(): return hit, 1, func(): return 1, dies)
+	animation.set_animation("hit", func(): return hitted, 1, func(): return 1, dies)
 	animation.set_animation("dead", func(): return current_state == State.Dead, 0, func(): return 1)
 
 func _physics_process(_delta: float):
-	if Input.is_action_just_pressed("ui_text_newline") && current_state!=State.Dead:
-		hit = true	
 	animation.update_animation()
 
 func move_behavior(delta:float) -> void:
@@ -66,19 +65,19 @@ func wall_sliding(delta:float) -> bool:
 			return true
 	return false
 
-func dies() -> void:
-	super.dies()
-	hit = false
-	var rng: RandomNumberGenerator = RandomNumberGenerator.new()
-	var ragdoll: RigidBody2D = RigidBody2D.new()
-	ragdoll.add_child(sprite.duplicate())
-	ragdoll.add_child(collision.duplicate())
-	ragdoll.apply_torque(360)
-	ragdoll.gravity_scale = 0.7
-	ragdoll.inertia = 1
-	ragdoll.apply_impulse(Vector2(rng.randf_range(-150, 150), -250))
-	get_parent().add_child(ragdoll)
-	ragdoll.global_position = global_position
-	visible = false
+
+func hit(_hit_origin: Vector2 = Vector2.ZERO) -> void:
+	if (!hitted):
+		hitted = true
+		collision.disabled = true
+		has_gravity = false
+		var rng: RandomNumberGenerator = RandomNumberGenerator.new()
+		ragdoll = Ragdoll2D.new(collision, sprite, 5, 450, Vector2(rng.randf_range(-150, 150), -250))
+		ragdoll.gravity_scale = 0.7
+		ragdoll.global_position = global_position
+		get_parent().add_child(ragdoll)
+		visible = false
+
+	
 
 		
