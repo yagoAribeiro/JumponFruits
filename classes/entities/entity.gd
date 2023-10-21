@@ -23,7 +23,6 @@ const LookDirection = {
 }
 
 @onready var default_gravity: float = ProjectSettings.get_setting("physics/2d/default_gravity", 0) as float
-var can_die: bool = false
 var current_state: int = State.Idle
 var current_direction: int = LookDirection.Left
 
@@ -31,16 +30,11 @@ func _ready():
 	init_animations()
 
 func _process(delta):
-	disposer()
 	apply_gravity(delta)
-	move_behavior(delta)
-	action_behavior(delta)
-	move_and_slide()
-
-func disposer() -> void:
-	if can_die && current_state!=State.Dead:
-		dies() 
-		return
+	if current_state != State.Dead:
+		move_behavior(delta)
+		action_behavior(delta)
+		move_and_slide()
 
 func init_animations() -> void:
 	pass
@@ -64,6 +58,6 @@ func action_behavior(_delta: float) -> void:
 	pass
 
 func dies() -> void:
-	current_state = State.Dead
-	collision.disabled = true
-	set_physics_process(false)
+	if current_state != State.Dead:
+		current_state = State.Dead
+		collision.disabled = true
