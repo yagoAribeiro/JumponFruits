@@ -35,6 +35,7 @@ func _process(delta):
 		move_behavior(delta)
 		action_behavior(delta)
 		move_and_slide()
+		animation.update_animation()
 
 func init_animations() -> void:
 	pass

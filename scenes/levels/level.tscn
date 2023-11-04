@@ -1,13 +1,13 @@
 [gd_scene load_steps=2 format=3 uid="uid://brtyymrsog8jv"]
 
-[ext_resource type="TileSet" uid="uid://wpw5nlbvu0ta" path="res://tileset/tiles.tres" id="1_fm88e"]
+[ext_resource type="TileSet" uid="uid://wpw5nlbvu0ta" path="res://gdresources/tileset/tiles.tres" id="1_kg4aw"]
 
 [node name="level" type="Node2D"]
 
 [node name="stage" type="Node2D" parent="."]
 
 [node name="tileMap" type="TileMap" parent="stage"]
-tile_set = ExtResource("1_fm88e")
+tile_set = ExtResource("1_kg4aw")
 format = 2
 
 [node name="entities" type="Node2D" parent="."]

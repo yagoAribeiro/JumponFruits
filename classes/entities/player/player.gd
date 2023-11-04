@@ -26,17 +26,18 @@ func init_animations() -> void:
 	animation.set_animation("hit", func(): return hitted, 1, func(): return 1, dies)
 	animation.set_animation("dead", func(): return current_state == State.Dead, 0, func(): return 1)
 
-func _physics_process(_delta: float):
-	animation.update_animation()
-
 func move_behavior(delta:float) -> void:
 	super.move_behavior(delta)
 	wall_direction.target_position.x = abs(wall_direction.target_position.x)*current_direction
 	var direction:Vector2 = Vector2.ZERO
 	direction.x = int(Input.is_action_pressed("ui_right")) - int(Input.is_action_pressed("ui_left"))
-	velocity.x = lerp(velocity.x, direction.x*speed, 0.25)
+	velocity.x = lerp(velocity.x, direction.x*speed, 0.20) if velocity.x < speed*0.75 else lerp(velocity.x, direction.x*speed, 0.40)
+	if is_on_floor() && direction.x == 0:
+		current_state = State.Idle
 
 func action_behavior(delta:float) -> void:
+	if Input.is_action_just_pressed("down"):
+		global_position.y += 1
 	jumps = 2 if is_on_floor() else 1 if jumps > 0 else 0
 	jump(delta, wall_sliding(delta))
 
@@ -69,13 +70,13 @@ func wall_sliding(delta:float) -> bool:
 func hit(_hit_origin: Vector2 = Vector2.ZERO) -> void:
 	if (!hitted):
 		hitted = true
-		collision.disabled = true
+		collision.set_deferred("disabled", true)
 		has_gravity = false
 		var rng: RandomNumberGenerator = RandomNumberGenerator.new()
 		ragdoll = Ragdoll2D.new(collision, sprite, 5, 450, Vector2(rng.randf_range(-150, 150), -250))
 		ragdoll.gravity_scale = 0.7
 		ragdoll.global_position = global_position
-		get_parent().add_child(ragdoll)
+		get_parent().call_deferred("add_child",ragdoll)
 		visible = false
 
 	
