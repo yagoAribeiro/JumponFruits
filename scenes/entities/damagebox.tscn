@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://bm7ctefqvst51"]
+
+[ext_resource type="Script" path="res://classes/entities/damagebox.gd" id="1_500lf"]
+
+[node name="damagebox" type="Area2D"]
+monitorable = false
+script = ExtResource("1_500lf")

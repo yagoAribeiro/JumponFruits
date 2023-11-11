@@ -2,8 +2,6 @@ extends TileMap
 
 class_name TileMapper
 
-const GROUP_NAME: String = "group_"
-
 func _ready():
 	map()
 
@@ -14,19 +12,22 @@ func map() -> void:
 			if config == null : continue
 			if config is TileSceneResource:
 				var instance = (config as TileSceneResource).scene.instantiate()
-				if instance is TileScene:
-					(instance as TileScene).custom_resource = config
-					(instance as TileScene).global_position = to_global(map_to_local(tilecoords))
+				if instance is Node2D:
+					(instance as Node2D).rotation_degrees = (config as TileSceneResource).rotation
+					(instance as Node2D).global_position = map_to_local(tilecoords)
 					erase_cell(layer, tilecoords)
 					instantiate_in_group(layer, instance)
 
 
 func instantiate_in_group(group: int, instance: Node) -> void:
-	var node_group: Node = find_child(GROUP_NAME+str(group))
-	if node_group == null:
-		call_deferred("add_child",instance)
-	else:
+	var node_group: Node = null
+	if get_child_count()>= group+1:
+		node_group = get_child(group)
+	if node_group is Node2D && node_group!=null:
 		node_group.call_deferred("add_child", instance)
+	else:
+		call_deferred("add_child",instance)
+		
 		
 	
 			

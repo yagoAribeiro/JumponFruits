@@ -11,8 +11,7 @@ func _ready():
 	state_changed.emit(active)
 
 func _on_body_entered(body: Entity):
-	if body is Player:
-		body.hit()
+	body.hit()
 
 func update_animation(_ignores : bool) -> void:
 	animation.update_animation()

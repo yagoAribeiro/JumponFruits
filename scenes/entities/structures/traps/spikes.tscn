@@ -1,13 +1,11 @@
-[gd_scene load_steps=11 format=3 uid="uid://dbouwku4iterl"]
+[gd_scene load_steps=12 format=3 uid="uid://dbouwku4iterl"]
 
 [ext_resource type="Texture2D" uid="uid://c7tp7g14x6pli" path="res://assets/Pixel Adventure Main/Traps/Spikes/Idle.png" id="1_gbis8"]
 [ext_resource type="Script" path="res://classes/entities/structures/traps/spikes.gd" id="1_r8jsu"]
 [ext_resource type="Texture2D" uid="uid://c6uk4p6yvploj" path="res://assets/Pixel Adventure Main/Traps/Spikes/Hide.png" id="2_ajval"]
 [ext_resource type="Texture2D" uid="uid://dl85ip36nisps" path="res://assets/Pixel Adventure Main/Traps/Spikes/Show.png" id="3_3yo8w"]
 [ext_resource type="Script" path="res://classes/handlers/animation/animationHandler.gd" id="4_o5sv6"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_511hi"]
-size = Vector2(15, 7)
+[ext_resource type="PackedScene" uid="uid://bm7ctefqvst51" path="res://scenes/entities/damagebox.tscn" id="6_5mkbc"]
 
 [sub_resource type="Animation" id="Animation_uraj3"]
 length = 0.001
@@ -50,38 +48,38 @@ tracks/2/keys = {
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("area:disabled")
+tracks/3/path = NodePath("damagebox/collision:shape:size")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
+"update": 0,
+"values": [Vector2(15, 7)]
 }
 tracks/4/type = "value"
 tracks/4/imported = false
 tracks/4/enabled = true
-tracks/4/path = NodePath("area:shape:size")
+tracks/4/path = NodePath("damagebox/collision:position")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(15, 7)]
+"values": [Vector2(-1, 4)]
 }
 tracks/5/type = "value"
 tracks/5/imported = false
 tracks/5/enabled = true
-tracks/5/path = NodePath("area:position")
+tracks/5/path = NodePath("damagebox:monitoring")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(-0.5, 4.5)]
+"update": 1,
+"values": [true]
 }
 
 [sub_resource type="Animation" id="Animation_bum6g"]
@@ -127,38 +125,38 @@ tracks/2/keys = {
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("area:disabled")
+tracks/3/path = NodePath("damagebox/collision:shape:size")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"times": PackedFloat32Array(0, 0.15),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [false, true]
-}
-tracks/4/type = "value"
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/path = NodePath("area:shape:size")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/keys = {
-"times": PackedFloat32Array(0, 0.05, 0.1),
+"times": PackedFloat32Array(-0.00102138, 0.0489786, 0.0989786),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
 "values": [Vector2(15, 7), Vector2(15, 5), Vector2(15, 3)]
 }
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("damagebox/collision:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.0489786, 0.0989786),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(-1, 4.26021), Vector2(-1, 5), Vector2(-1, 6)]
+}
 tracks/5/type = "value"
 tracks/5/imported = false
 tracks/5/enabled = true
-tracks/5/path = NodePath("area:position")
+tracks/5/path = NodePath("damagebox:monitoring")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
-"times": PackedFloat32Array(0, 0.05, 0.1),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 0,
-"values": [Vector2(-0.5, 4.5), Vector2(-0.5, 5.5), Vector2(-0.5, 6.5)]
+"times": PackedFloat32Array(0.05, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
 }
 
 [sub_resource type="Animation" id="Animation_nmcg3"]
@@ -204,38 +202,38 @@ tracks/2/keys = {
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("area:shape:size")
+tracks/3/path = NodePath("damagebox:monitoring")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"times": PackedFloat32Array(0, 0.05, 0.1, 0.15),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 0,
-"values": [Vector2(15, 3), Vector2(15, 3), Vector2(15, 5), Vector2(15, 7)]
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
 }
 tracks/4/type = "value"
 tracks/4/imported = false
 tracks/4/enabled = true
-tracks/4/path = NodePath("area:disabled")
+tracks/4/path = NodePath("damagebox/collision:shape:size")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
-"times": PackedFloat32Array(0, 0.05),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [true, false]
+"times": PackedFloat32Array(0, 0.1, 0.15),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(15, 3), Vector2(15, 4.5), Vector2(15, 6.5)]
 }
 tracks/5/type = "value"
 tracks/5/imported = false
 tracks/5/enabled = true
-tracks/5/path = NodePath("area:position")
+tracks/5/path = NodePath("damagebox/collision:position")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
-"times": PackedFloat32Array(0, 0.05, 0.1, 0.15),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
+"times": PackedFloat32Array(0, 0.1, 0.15),
+"transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
-"values": [Vector2(-0.5, 6.5), Vector2(-0.5, 6.5), Vector2(-0.5, 5.5), Vector2(-0.5, 4.5)]
+"values": [Vector2(-1, 6), Vector2(-1, 5.25), Vector2(-1, 4.25)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_ehath"]
@@ -245,15 +243,14 @@ _data = {
 "show": SubResource("Animation_nmcg3")
 }
 
-[node name="Spikes" type="Area2D" node_paths=PackedStringArray("animation")]
-collision_layer = 4
-collision_mask = 2
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_weig6"]
+size = Vector2(15, 7)
+
+[node name="Spikes" type="Node2D" node_paths=PackedStringArray("animation")]
 script = ExtResource("1_r8jsu")
 animation = NodePath("animation")
-
-[node name="area" type="CollisionShape2D" parent="."]
-position = Vector2(-0.5, 4.5)
-shape = SubResource("RectangleShape2D_511hi")
+active = true
+custom_resource = null
 
 [node name="sprite" type="Sprite2D" parent="."]
 texture = ExtResource("1_gbis8")
@@ -264,4 +261,11 @@ libraries = {
 }
 script = ExtResource("4_o5sv6")
 
-[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[node name="damagebox" parent="." node_paths=PackedStringArray("sender") instance=ExtResource("6_5mkbc")]
+collision_layer = 4
+collision_mask = 48
+sender = NodePath("..")
+
+[node name="collision" type="CollisionShape2D" parent="damagebox"]
+position = Vector2(-1, 4)
+shape = SubResource("RectangleShape2D_weig6")

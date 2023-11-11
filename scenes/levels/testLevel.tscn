@@ -15,21 +15,19 @@ layer_1/modulate = Color(1, 1, 1, 1)
 layer_1/y_sort_enabled = false
 layer_1/y_sort_origin = 0
 layer_1/z_index = 0
-layer_1/tile_data = PackedInt32Array()
+layer_1/tile_data = PackedInt32Array(-65532, 327681, 0, -65533, 327681, 0)
 layer_2/name = ""
 layer_2/enabled = true
 layer_2/modulate = Color(1, 1, 1, 1)
 layer_2/y_sort_enabled = false
 layer_2/y_sort_origin = 0
 layer_2/z_index = 0
-layer_2/tile_data = PackedInt32Array()
+layer_2/tile_data = PackedInt32Array(-2, 327681, 0)
 script = ExtResource("2_5oe0o")
 
-[node name="group_0" type="Node" parent="stage/tileMap" index="0"]
+[node name="Node2D" type="Node2D" parent="stage/tileMap" index="0"]
 
-[node name="group_1" type="Node" parent="stage/tileMap" index="1"]
-
-[node name="group_2" type="Node" parent="stage/tileMap" index="2"]
+[node name="Node2D2" type="Node2D" parent="stage/tileMap" index="1"]
 
 [node name="player" parent="entities" index="0" instance=ExtResource("2_iegnr")]
 position = Vector2(117, 46)

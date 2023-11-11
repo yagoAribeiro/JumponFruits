@@ -62,8 +62,11 @@ down={
 2d_render/layer_2="Entities"
 2d_render/layer_3="Traps"
 2d_physics/layer_1="Terrain"
-2d_physics/layer_2="Entities"
+2d_physics/layer_2="Enemies"
 2d_physics/layer_3="Traps"
+2d_physics/layer_4="Player"
+2d_physics/layer_5="EnemiesHitBox"
+2d_physics/layer_6="PlayerHiyBox"
 
 [physics]
 
