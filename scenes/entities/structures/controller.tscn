@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://cj2kxvxee6p88"]
+
+[ext_resource type="Script" path="res://classes/entities/structures/controller.gd" id="1_q51so"]
+
+[node name="Controller" type="Node2D"]
+script = ExtResource("1_q51so")
+active = true

@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://c8ae1xvqucimt"]
+
+[ext_resource type="Script" path="res://classes/entities/structures/cronometer.gd" id="1_r7l3s"]
+
+[node name="Cronometer" type="Node"]
+script = ExtResource("1_r7l3s")
+active = true

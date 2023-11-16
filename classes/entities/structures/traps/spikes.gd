@@ -8,7 +8,6 @@ func _ready():
 	animation.set_animation("show", func(): return active, 0, func(): return 1) 
 	animation.set_animation("hide", func(): return !active, 0, func(): return 1) 
 	connect("state_changed", update_animation)
-	state_changed.emit(active)
 
 func _on_body_entered(body: Entity):
 	body.hit()

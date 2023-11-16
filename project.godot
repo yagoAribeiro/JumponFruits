@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="JumponFruits"
-run/main_scene="res://scenes/levels/level.tscn"
+run/main_scene="res://scenes/levels/testLevel.tscn"
 config/features=PackedStringArray("4.1", "GL Compatibility")
 run/max_fps=60
 config/icon="res://icon.svg"
@@ -20,8 +20,8 @@ config/icon="res://icon.svg"
 
 window/size/viewport_width=384
 window/size/viewport_height=216
+window/size/mode=3
 window/stretch/mode="canvas_items"
-window/stretch/aspect="expand"
 window/per_pixel_transparency/allowed=true
 
 [input]
