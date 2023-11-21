@@ -5,6 +5,9 @@ class_name AnimationHandler
 var animations: Array
 var callbacks: Array
 
+func _ready():
+	connect("animation_finished", _on_animation_finished)
+
 func set_animation(animation_name: String, animation_condition: Callable, priority: int, speed_factor: Callable, callback: Callable = func():) -> void:
 	animations.append(animation_item_res.new(animation_name, animation_condition, priority, speed_factor))
 	animations.sort_custom(func(x, y): return (x as AnimationHandlerItem).animation_priority <= (y as AnimationHandlerItem).animation_priority)

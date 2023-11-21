@@ -1,0 +1,160 @@
+[gd_scene load_steps=11 format=3 uid="uid://cu0cu5ov8knht"]
+
+[ext_resource type="Texture2D" uid="uid://3smgolfrh50" path="res://assets/Pixel Adventure Main/Traps/Platforms/Brown Off.png" id="1_ot05u"]
+[ext_resource type="Script" path="res://classes/entities/structures/platform.gd" id="1_r850h"]
+[ext_resource type="Script" path="res://classes/handlers/animation/animationHandler.gd" id="2_1ww00"]
+[ext_resource type="Texture2D" uid="uid://cjtgmoshxy1qi" path="res://assets/Pixel Adventure Main/Traps/Platforms/Chain.png" id="2_dh5xi"]
+[ext_resource type="Texture2D" uid="uid://bqt82ttyxwjtu" path="res://assets/Pixel Adventure Main/Traps/Platforms/Brown On (32x8).png" id="4_f6y83"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qxh2n"]
+size = Vector2(30, 3)
+
+[sub_resource type="Animation" id="Animation_gcy1d"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("sprite:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("4_f6y83")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("sprite:hframes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [8]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("sprite:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_iq548"]
+resource_name = "off"
+length = 0.8
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("sprite:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("1_ot05u")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("sprite:hframes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("sprite:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_o1wl8"]
+resource_name = "on"
+length = 0.8
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("sprite:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("4_f6y83")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("sprite:hframes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [8]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("sprite:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5, 6, 7]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_yy1ak"]
+_data = {
+"RESET": SubResource("Animation_gcy1d"),
+"off": SubResource("Animation_iq548"),
+"on": SubResource("Animation_o1wl8")
+}
+
+[node name="Platform" type="CharacterBody2D" node_paths=PackedStringArray("animation")]
+collision_mask = 11
+script = ExtResource("1_r850h")
+chain_texture = ExtResource("2_dh5xi")
+animation = NodePath("animation")
+active = true
+
+[node name="sprite" type="Sprite2D" parent="."]
+texture = ExtResource("4_f6y83")
+hframes = 8
+
+[node name="collision" type="CollisionShape2D" parent="."]
+position = Vector2(0, -0.5)
+shape = SubResource("RectangleShape2D_qxh2n")
+one_way_collision = true
+
+[node name="animation" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_yy1ak")
+}
+script = ExtResource("2_1ww00")

@@ -1,0 +1,27 @@
+[gd_scene load_steps=2 format=3 uid="uid://c0x57tphw4377"]
+
+[ext_resource type="Script" path="res://classes/entities/structures/movingstructure.gd" id="1_qrjtv"]
+
+[node name="MovingStructure" type="Node2D" node_paths=PackedStringArray("trail", "start", "end")]
+script = ExtResource("1_qrjtv")
+trail = NodePath("trail")
+start = NodePath("trail/start")
+end = NodePath("trail/end")
+
+[node name="trail" type="TextureRect" parent="."]
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_right = 8.0
+offset_bottom = 8.0
+grow_vertical = 2
+pivot_offset = Vector2(0, 4)
+size_flags_horizontal = 0
+size_flags_vertical = 4
+stretch_mode = 1
+
+[node name="end" type="Marker2D" parent="trail"]
+position = Vector2(8, 4)
+
+[node name="start" type="Marker2D" parent="trail"]
+position = Vector2(0, 4)

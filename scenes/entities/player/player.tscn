@@ -733,5 +733,3 @@ monitoring = false
 [node name="collision" parent="damagebox" index="0"]
 position = Vector2(0.5, 15.5)
 shape = SubResource("RectangleShape2D_rhfo7")
-
-[connection signal="animation_finished" from="animation" to="animation" method="_on_animation_finished"]

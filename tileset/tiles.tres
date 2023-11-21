@@ -2,7 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://ccgh02kcu7bx0" path="res://assets/Pixel Adventure Main/Terrain/Terrain (16x16).png" id="1_l0usd"]
 [ext_resource type="Texture2D" uid="uid://b8h6ublanf1ga" path="res://assets/Pixel Adventure Main/Traps/Custom/astiles.png" id="2_ixx8b"]
-[ext_resource type="PackedScene" uid="uid://dbouwku4iterl" path="res://scenes/entities/structures/traps/spikes.tscn" id="2_r4157"]
+[ext_resource type="PackedScene" uid="uid://dbouwku4iterl" path="res://scenes/entities/miscellanea/traps/spikes.tscn" id="2_r4157"]
 [ext_resource type="Script" path="res://gdresources/scripts/tilesceneresource.gd" id="3_5bqpa"]
 [ext_resource type="Texture2D" uid="uid://bpuy7g4d5s51w" path="res://assets/Pixel Adventure Main/Traps/Sand Mud Ice/Sand Mud Ice (16x6).png" id="5_1io2j"]
 

@@ -37,7 +37,7 @@ func move_behavior(delta:float) -> void:
 
 func action_behavior(delta:float) -> void:
 	if Input.is_action_just_pressed("down"):
-		global_position.y += 1
+		global_position.y += 3
 	jumps = 2 if is_on_floor() else 1 if jumps > 0 else 0
 	jump(delta, wall_sliding(delta))
 

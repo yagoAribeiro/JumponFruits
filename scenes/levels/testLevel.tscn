@@ -3,18 +3,15 @@
 [ext_resource type="PackedScene" uid="uid://brtyymrsog8jv" path="res://scenes/levels/level.tscn" id="1_s1834"]
 [ext_resource type="Script" path="res://classes/handlers/tilemapper.gd" id="2_5oe0o"]
 [ext_resource type="PackedScene" uid="uid://doryei4lrhsys" path="res://scenes/entities/player/player.tscn" id="2_iegnr"]
-[ext_resource type="PackedScene" uid="uid://cj2kxvxee6p88" path="res://scenes/entities/structures/controller.tscn" id="3_06c31"]
-[ext_resource type="PackedScene" uid="uid://c8ae1xvqucimt" path="res://scenes/entities/structures/cronometer.tscn" id="4_i2via"]
-[ext_resource type="PackedScene" uid="uid://l1ura7plhmb6" path="res://scenes/entities/structures/switcher.tscn" id="5_dd30r"]
+[ext_resource type="PackedScene" uid="uid://cj2kxvxee6p88" path="res://scenes/entities/miscellanea/controller.tscn" id="3_06c31"]
+[ext_resource type="PackedScene" uid="uid://c8ae1xvqucimt" path="res://scenes/entities/miscellanea/cronometer.tscn" id="4_i2via"]
+[ext_resource type="PackedScene" uid="uid://l1ura7plhmb6" path="res://scenes/entities/miscellanea/switcher.tscn" id="5_dd30r"]
 
 [node name="level" instance=ExtResource("1_s1834")]
 
-[node name="Cronometer" parent="stage" index="0" node_paths=PackedStringArray("interactable") instance=ExtResource("4_i2via")]
-interactable = NodePath("../Switcher")
-
-[node name="tileMap" parent="stage" index="1"]
+[node name="tileMap" parent="stage" index="0"]
 position = Vector2(115, 99)
-layer_0/tile_data = PackedInt32Array(0, 786432, 5, 1, 786432, 5, 2, 786432, 5, 3, 786432, 5, 4, 786432, 5, 65535, 786432, 5, 65534, 786432, 5, 65533, 786432, 5, 65532, 786432, 5, 65531, 786432, 5, -65531, 786432, 5, -131067, 786432, 5, -196603, 786432, 5, -262139, 786432, 5, -327675, 786432, 5, -393211, 786432, 5, -6, 786432, 5, -65542, 786432, 5, -131078, 786432, 5, -196614, 786432, 5, -262150, 786432, 5, -327686, 786432, 5, -65541, 327681, 131072, -131077, 327681, 131072, -196613, 327681, 131072, -262149, 327681, 131072, -131068, 327681, 196608, -196604, 327681, 196608, -262140, 327681, 196608, -327676, 327681, 196608)
+layer_0/tile_data = PackedInt32Array(0, 786432, 5, 1, 786432, 5, 2, 786432, 5, 3, 786432, 5, 4, 786432, 5, 65535, 786432, 5, 65534, 786432, 5, 65533, 786432, 5, 65532, 786432, 5, 65531, 786432, 5, -65531, 786432, 5, -131067, 786432, 5, -196603, 786432, 5, -262139, 786432, 5, -327675, 786432, 5, -393211, 786432, 5, -6, 786432, 5, -65542, 786432, 5, -131078, 786432, 5, -196614, 786432, 5, -262150, 786432, 5, -327686, 786432, 5, -65541, 327681, 131072, -131077, 327681, 131072, -196613, 327681, 131072, -262149, 327681, 131072)
 layer_1/name = ""
 layer_1/enabled = true
 layer_1/modulate = Color(1, 1, 1, 1)
@@ -35,9 +32,12 @@ script = ExtResource("2_5oe0o")
 
 [node name="Controller2" parent="stage/tileMap" index="1" instance=ExtResource("3_06c31")]
 
-[node name="Switcher" parent="stage" index="2" node_paths=PackedStringArray("first", "second") instance=ExtResource("5_dd30r")]
-first = NodePath("../tileMap/Controller")
-second = NodePath("../tileMap/Controller2")
+[node name="Cronometer" parent="stage/controllers" index="0" node_paths=PackedStringArray("interactable") instance=ExtResource("4_i2via")]
+interactable = NodePath("../Switcher")
+
+[node name="Switcher" parent="stage/controllers" index="1" node_paths=PackedStringArray("first", "second") instance=ExtResource("5_dd30r")]
+first = NodePath("../../tileMap/Controller")
+second = NodePath("../../tileMap/Controller2")
 
 [node name="player" parent="entities" index="0" instance=ExtResource("2_iegnr")]
 position = Vector2(117, 46)
