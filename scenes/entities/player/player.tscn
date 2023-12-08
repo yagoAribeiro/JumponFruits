@@ -680,7 +680,7 @@ _data = {
 }
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_se7w4"]
-size = Vector2(15, 22)
+size = Vector2(21, 22)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_rhfo7"]
 size = Vector2(15, 5)
@@ -688,7 +688,7 @@ size = Vector2(15, 5)
 [node name="player" node_paths=PackedStringArray("wall_direction", "wall_timer", "animation") instance=ExtResource("1_n03l1")]
 collision_layer = 8
 script = ExtResource("2_vnnwx")
-jump_force = 430.0
+jump_force = 300.0
 wall_direction = NodePath("wallDirection")
 wall_timer = NodePath("wallTimer")
 total_wall_time = 5.0
@@ -711,10 +711,10 @@ target_position = Vector2(14, 0)
 one_shot = true
 
 [node name="animation" type="AnimationPlayer" parent="." index="4"]
-autoplay = "idle"
 libraries = {
 "": SubResource("AnimationLibrary_auoeb")
 }
+autoplay = "idle"
 script = ExtResource("3_5cct7")
 
 [node name="hitbox" parent="." index="5"]

@@ -8,7 +8,7 @@ class_name Cronometer
 var timer: Timer = Timer.new()
 
 
-func _ready():
+func _ready() -> void:
 	timer.one_shot = false
 	add_child(timer)
 	timer.connect("timeout", on_timeout)

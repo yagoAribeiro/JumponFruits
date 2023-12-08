@@ -2,7 +2,7 @@ extends Interactable
 
 class_name Controller
 
-func _ready():
+func _ready() -> void:
 	connect("state_changed", apply_children)
 	emit_signal("state_changed", active)
 	

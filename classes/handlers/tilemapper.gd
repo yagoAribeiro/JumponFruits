@@ -2,16 +2,16 @@ extends TileMap
 
 class_name TileMapper
 
-func _ready():
+func _ready() -> void:
 	map()
 
 func map() -> void:
 	for layer in get_layers_count():
 		for tilecoords in get_used_cells(layer):
-			var config = get_cell_tile_data(layer, tilecoords).get_custom_data("sceneconfig")
+			var config: Resource = get_cell_tile_data(layer, tilecoords).get_custom_data("sceneconfig")
 			if config == null : continue
 			if config is TileSceneResource:
-				var instance = (config as TileSceneResource).scene.instantiate()
+				var instance: Node = config.scene.instantiate()
 				if instance is Node2D:
 					(instance as Node2D).rotation_degrees = (config as TileSceneResource).rotation
 					(instance as Node2D).global_position = map_to_local(tilecoords)

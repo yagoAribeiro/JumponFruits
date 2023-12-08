@@ -4,12 +4,14 @@
 [ext_resource type="PackedScene" uid="uid://d0gummj1hwyho" path="res://scenes/entities/hitbox.tscn" id="2_t353y"]
 [ext_resource type="PackedScene" uid="uid://bm7ctefqvst51" path="res://scenes/entities/damagebox.tscn" id="3_gm0fk"]
 
-[node name="entity" type="CharacterBody2D" node_paths=PackedStringArray("collision", "sprite")]
+[node name="entity" type="CharacterBody2D" node_paths=PackedStringArray("collision", "sprite", "damage_box", "hit_box")]
 light_mask = 0
 visibility_layer = 2
 script = ExtResource("1_rqkny")
 collision = NodePath("collision")
 sprite = NodePath("sprite")
+damage_box = NodePath("damagebox")
+hit_box = NodePath("hitbox")
 
 [node name="collision" type="CollisionShape2D" parent="."]
 light_mask = 0

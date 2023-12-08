@@ -56,7 +56,7 @@ var tween: Tween
 var structure_node: Node
 var	direction: int = Direction.Going
 
-func _ready():
+func _ready() -> void:
 	progress = progress
 	trail_length = trail_length
 	trail_rotation = trail_rotation
