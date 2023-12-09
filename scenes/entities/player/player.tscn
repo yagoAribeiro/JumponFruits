@@ -733,3 +733,9 @@ monitoring = false
 [node name="collision" parent="damagebox" index="0"]
 position = Vector2(0.5, 15.5)
 shape = SubResource("RectangleShape2D_rhfo7")
+
+[node name="DebugLabel" parent="." index="7"]
+offset_left = -19.0
+offset_top = -27.0
+offset_right = 21.0
+offset_bottom = -14.0

@@ -10,8 +10,9 @@ class_name Entity
 @export var sprite: Sprite2D
 @export var damage_box: DamageBox
 @export var hit_box: HitBox
+@export var debug_print: bool = false
 
-const State = {
+var State: Dictionary = {
 	Dead = 0,
 	Moving = 1,
 	Idle = 2,
@@ -23,7 +24,7 @@ const LookDirection = {
 	Left = -1,
 	Right = 1
 }
-
+@onready var debug_label: Label = get_node("DebugLabel") as Label
 @onready var default_gravity: float = ProjectSettings.get_setting("physics/2d/default_gravity", 0) as float
 var current_state: int = State.Idle
 var current_direction: int = LookDirection.Left
@@ -41,6 +42,9 @@ func _process(delta: float) -> void:
 			action_behavior(delta)
 		move_and_slide()
 	animation.update_animation()
+	if debug_print:
+		debug_label.visible = debug_print
+		debug_label.text = str(State.find_key(current_state))
 
 func init_animations() -> void:
 	pass
