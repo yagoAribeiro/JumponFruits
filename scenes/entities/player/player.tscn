@@ -13,7 +13,7 @@
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_u85mo"]
 resource_local_to_scene = true
-size = Vector2(21, 24)
+size = Vector2(21, 22)
 
 [sub_resource type="Animation" id="Animation_7hbua"]
 length = 0.001
@@ -680,62 +680,76 @@ _data = {
 }
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_se7w4"]
-size = Vector2(21, 22)
+size = Vector2(17, 19)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_rhfo7"]
 size = Vector2(15, 5)
 
-[node name="player" node_paths=PackedStringArray("wall_direction", "wall_timer", "animation") instance=ExtResource("1_n03l1")]
+[node name="player" node_paths=PackedStringArray("wall_direction", "left_ceiling_cast", "right_ceiling_cast", "wall_timer", "mercy_jump_timer", "animation") instance=ExtResource("1_n03l1")]
 collision_layer = 8
 script = ExtResource("2_vnnwx")
 jump_force = 300.0
 wall_direction = NodePath("wallDirection")
+left_ceiling_cast = NodePath("ceillingCollisionL")
+right_ceiling_cast = NodePath("ceillingCollisionR")
 wall_timer = NodePath("wallTimer")
-total_wall_time = 5.0
+mercy_jump_timer = NodePath("mercyJumpTimer")
 life_points = 1
-speed = 280.0
+speed = 340.0
+max_acceleration = 10.0
 animation = NodePath("animation")
 
-[node name="collision" parent="." index="0"]
-position = Vector2(0.5, 4)
-shape = SubResource("RectangleShape2D_u85mo")
-
-[node name="sprite" parent="." index="1"]
+[node name="sprite" parent="." index="0"]
 texture = ExtResource("4_qq471")
 hframes = 11
 
+[node name="collision" parent="." index="1"]
+position = Vector2(0.5, 5)
+shape = SubResource("RectangleShape2D_u85mo")
+
 [node name="wallDirection" type="RayCast2D" parent="." index="2"]
-target_position = Vector2(14, 0)
+target_position = Vector2(12, 0)
 
-[node name="wallTimer" type="Timer" parent="." index="3"]
-one_shot = true
-
-[node name="animation" type="AnimationPlayer" parent="." index="4"]
+[node name="animation" type="AnimationPlayer" parent="." index="3"]
 libraries = {
 "": SubResource("AnimationLibrary_auoeb")
 }
 autoplay = "idle"
 script = ExtResource("3_5cct7")
 
-[node name="hitbox" parent="." index="5"]
+[node name="hitbox" parent="." index="4"]
 collision_layer = 32
 collision_mask = 0
 
 [node name="collision" parent="hitbox" index="0"]
-position = Vector2(0.5, 5)
+position = Vector2(0.5, 3.5)
 shape = SubResource("RectangleShape2D_se7w4")
 
-[node name="damagebox" parent="." index="6"]
+[node name="damagebox" parent="." index="5"]
 collision_layer = 8
 collision_mask = 16
 monitoring = false
 
 [node name="collision" parent="damagebox" index="0"]
-position = Vector2(0.5, 15.5)
+position = Vector2(0, 15)
 shape = SubResource("RectangleShape2D_rhfo7")
 
-[node name="DebugLabel" parent="." index="7"]
-offset_left = -19.0
-offset_top = -27.0
-offset_right = 21.0
-offset_bottom = -14.0
+[node name="DebugLabel" parent="." index="6"]
+offset_left = -18.0
+offset_top = -60.0
+offset_right = 22.0
+offset_bottom = -47.0
+
+[node name="ceillingCollisionL" type="RayCast2D" parent="." index="7"]
+position = Vector2(-10, -6)
+target_position = Vector2(0, -10)
+
+[node name="ceillingCollisionR" type="RayCast2D" parent="." index="8"]
+position = Vector2(11, -6)
+target_position = Vector2(0, -10)
+
+[node name="wallTimer" type="Timer" parent="." index="9"]
+one_shot = true
+
+[node name="mercyJumpTimer" type="Timer" parent="." index="10"]
+one_shot = true

@@ -196,13 +196,13 @@ speed = 180.0
 weight = 2.0
 animation = NodePath("AnimationHandler")
 
-[node name="collision" parent="." index="0"]
-position = Vector2(0, 6)
-shape = SubResource("RectangleShape2D_ida26")
-
-[node name="sprite" parent="." index="1"]
+[node name="sprite" parent="." index="0"]
 texture = ExtResource("2_flmpn")
 hframes = 14
+
+[node name="collision" parent="." index="1"]
+position = Vector2(0, 6)
+shape = SubResource("RectangleShape2D_ida26")
 
 [node name="hitbox" parent="." index="2"]
 collision_layer = 16

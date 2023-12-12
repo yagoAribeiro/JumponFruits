@@ -3,6 +3,7 @@ class_name Entity
 
 @export var life_points: int
 @export var speed: float
+@export_range(1, 100, 0.1) var max_acceleration: float = 1.0
 @export var weight: float = 1.0
 @export var animation: AnimationHandler
 @export var collision: CollisionShape2D
@@ -12,6 +13,13 @@ class_name Entity
 @export var hit_box: HitBox
 @export var debug_print: bool = false
 
+const LookDirection = {
+	Left = -1,
+	Right = 1
+}
+@onready var debug_label: Label = get_node("DebugLabel") as Label
+@onready var default_gravity: float = ProjectSettings.get_setting("physics/2d/default_gravity", 0) as float
+@onready var acceleration: float = max_acceleration
 var State: Dictionary = {
 	Dead = 0,
 	Moving = 1,
@@ -19,39 +27,35 @@ var State: Dictionary = {
 	Falling = 3,
 	Hitted = 4
 }
-
-const LookDirection = {
-	Left = -1,
-	Right = 1
-}
-@onready var debug_label: Label = get_node("DebugLabel") as Label
-@onready var default_gravity: float = ProjectSettings.get_setting("physics/2d/default_gravity", 0) as float
 var current_state: int = State.Idle
 var current_direction: int = LookDirection.Left
 var ragdoll: Ragdoll2D
+var gravity_step: float 
 
 func _ready() -> void:
 	init_animations()
 
 func _process(delta: float) -> void:
-	apply_gravity(delta)
 	if current_state != State.Dead:
-		state_behavior()
 		if current_state != State.Hitted:
 			move_behavior(delta)
 			action_behavior(delta)
+		apply_gravity(delta)
+		state_behavior()
 		move_and_slide()
 	animation.update_animation()
 	if debug_print:
 		debug_label.visible = debug_print
 		debug_label.text = str(State.find_key(current_state))
+		debug_status()
 
 func init_animations() -> void:
 	pass
 
 func apply_gravity(delta: float) -> void:
 	if has_gravity:
-		velocity.y += delta*default_gravity*weight
+		gravity_step = delta*default_gravity*weight*-up_direction.y if velocity.y<=1000*-up_direction.y else 0.0
+		velocity.y += gravity_step
 
 func state_behavior() -> void:
 	damage_box.set_deferred("monitoring", true)
@@ -114,3 +118,7 @@ func on_falling() -> void:
 func on_hitted() -> void:
 	damage_box.set_deferred("monitoring", false)
 	hit_box.set_deferred("monitorable", false)
+
+func debug_status() -> void:
+	pass
+

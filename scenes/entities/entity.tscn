@@ -13,11 +13,11 @@ sprite = NodePath("sprite")
 damage_box = NodePath("damagebox")
 hit_box = NodePath("hitbox")
 
+[node name="sprite" type="Sprite2D" parent="."]
+
 [node name="collision" type="CollisionShape2D" parent="."]
 light_mask = 0
 visibility_layer = 2
-
-[node name="sprite" type="Sprite2D" parent="."]
 
 [node name="hitbox" parent="." node_paths=PackedStringArray("receiver") instance=ExtResource("2_t353y")]
 receiver = NodePath("..")
