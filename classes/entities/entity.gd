@@ -85,7 +85,7 @@ func dies(_sender: Node2D = null, _offset: Vector2 = Vector2.ZERO) -> void:
 		damage_box.set_deferred("monitoring", false)
 		hit_box.set_deferred("monitorable", false)
 
-func spawn_ragdoll(offset: Vector2) -> void:
+func spawn_ragdoll(offset: Vector2, callback: Callable = func() -> void:) -> void:
 	has_gravity = false
 	var rng: RandomNumberGenerator = RandomNumberGenerator.new()
 	var impulse: Vector2 = Vector2(rng.randf_range(-150, 150), -250)
@@ -94,6 +94,7 @@ func spawn_ragdoll(offset: Vector2) -> void:
 	ragdoll = Ragdoll2D.new(collision, sprite, 5, 450, impulse)
 	ragdoll.gravity_scale = 0.7
 	ragdoll.global_position = global_position
+	ragdoll.callback = callback
 	get_parent().call_deferred("add_child",ragdoll)
 	visible = false
 

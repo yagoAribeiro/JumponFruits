@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://bh04lxdrahw32"]
+[gd_scene load_steps=9 format=3 uid="uid://bh04lxdrahw32"]
 
 [ext_resource type="PackedScene" uid="uid://brtyymrsog8jv" path="res://scenes/levels/level.tscn" id="1_s1834"]
 [ext_resource type="Script" path="res://classes/handlers/tilemapper.gd" id="2_5oe0o"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://c8ae1xvqucimt" path="res://scenes/entities/miscellanea/cronometer.tscn" id="4_i2via"]
 [ext_resource type="PackedScene" uid="uid://l1ura7plhmb6" path="res://scenes/entities/miscellanea/switcher.tscn" id="5_dd30r"]
 [ext_resource type="PackedScene" uid="uid://qjws20j5xjky" path="res://scenes/entities/enemies/mushroom.tscn" id="7_6pic4"]
+[ext_resource type="PackedScene" uid="uid://bnapfykbk6pcu" path="res://scenes/entities/enemies/blue_bird.tscn" id="8_dj4qy"]
 
 [node name="level" instance=ExtResource("1_s1834")]
 
@@ -37,6 +38,9 @@ position = Vector2(318, 6)
 
 [node name="mushroom2" parent="entities" index="2" instance=ExtResource("7_6pic4")]
 position = Vector2(18, 169)
+
+[node name="blue_bird" parent="entities" index="3" instance=ExtResource("8_dj4qy")]
+position = Vector2(1, 20)
 
 [node name="Camera2D" type="Camera2D" parent="." index="3"]
 position = Vector2(160, 87)

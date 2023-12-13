@@ -1,4 +1,4 @@
-extends Entity
+extends PatrolEnemy
 class_name Mushroom
 
 @export var floor_raycast: RayCast2D
@@ -33,14 +33,10 @@ func move_behavior(delta: float) -> void:
 	if current_state == State.Moving || current_state == State.Falling:
 		velocity.x = lerp(velocity.x, current_direction * speed, delta*acceleration)
 
-func change_direction() -> void:
-	current_state = State.Moving
-	current_direction = -current_direction
-	global_position.x += current_direction
-
 func hit(sender: Node2D, offset: Vector2) -> void:
 	if sender is Player:
-		sender.velocity.y -= 750
+		(sender as Player).jumps = 1
+		sender.velocity.y = -500
 	super.hit(sender, offset)
 
 

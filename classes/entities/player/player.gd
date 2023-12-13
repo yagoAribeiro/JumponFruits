@@ -70,6 +70,7 @@ func state_behavior() -> void:
 		State.WallSliding:
 			mercy_jump_timer.start(mercy_jump_time)
 			wall_timer.paused = false
+			jumps = 0
 
 func action_behavior(delta: float) -> void:
 	if Input.is_action_just_pressed("down"):
@@ -85,14 +86,15 @@ func jump_on_tap() -> void:
 				jumps = 1
 			air_jump = jumps == 1
 			jump_time = max_jump_time
-			velocity.y = min_jump_speed*up_direction.y
+			velocity.y = min_jump_speed*up_direction.y 
 			jumps-=1
 		elif !mercy_jump_timer.is_stopped():
 			var can_wall_jump: bool = Input.is_action_pressed("ui_right") if wall_direction_collided == -1\
 			 else Input.is_action_pressed("ui_left") if wall_direction_collided == 1 else false
 			if can_wall_jump:
-				if wall_timer.time_left-1 < 0: wall_timer.stop()
-				else: wall_timer.start(wall_timer.time_left-1)
+				if wall_timer.time_left-0.5 < 0: wall_timer.stop()
+				else: wall_timer.start(wall_timer.time_left-0.5)
+				jumps = 1
 				velocity.y = min_jump_speed*1.5*up_direction.y
 				velocity.x = speed*0.5*-wall_direction_collided
 				
@@ -114,7 +116,6 @@ func wall_sliding(delta: float) -> void:
 	 and wall_direction.is_colliding() and !wall_timer.is_stopped()
 	if  can_grab:
 		velocity.y = clampf(velocity.y-max_wall_speed*2*delta-abs(gravity_step), max_wall_speed-abs(gravity_step), max_wall_speed*2)
-		jumps = 0
 		current_state = State.WallSliding
 		wall_direction_collided = current_direction
 			
@@ -123,7 +124,7 @@ func hit(_sender: Node2D, offset: Vector2) -> void:
 	if current_state != State.Hitted:
 		current_state = State.Hitted
 		life_points = 0
-		spawn_ragdoll(offset)
+		spawn_ragdoll(offset, func()->void:get_tree().reload_current_scene())
 
 func dies(_sender: Node2D = null, _offset: Vector2 = Vector2.ZERO) -> void:
 	super.dies()

@@ -5,6 +5,7 @@ var collision: CollisionShape2D
 var out_of_camera: VisibleOnScreenNotifier2D
 var sprite: Sprite2D
 var sprite_ref: Sprite2D
+var callback: Callable
 
 
 func _init(
@@ -17,7 +18,11 @@ func _init(
 ) -> void:
 	collision = rag_collision.duplicate()
 	out_of_camera = VisibleOnScreenNotifier2D.new()
-	out_of_camera.connect("screen_exited", func() -> void: queue_free())
+	out_of_camera.connect("screen_exited", 
+	func() -> void: 
+		if callback!=null:
+			callback.call()
+		queue_free())
 	sprite_ref = rag_sprite
 	sprite = rag_sprite.duplicate()
 	out_of_camera.rect = sprite.region_rect
