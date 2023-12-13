@@ -14,27 +14,24 @@ func init_animations() -> void:
 		change_direction
 	)
 	animation.set_animation(
-		"move", func() -> bool: return current_state == State.Moving, 1, geral_factor
+		"move", func() -> bool: return current_state == State.Moving || velocity.x != 0, 1, geral_factor
 	)
 	animation.set_animation(
 		"hit", func() -> bool: return current_state == State.Dead, 0, geral_factor, func()-> void: queue_free()
 	)
 
 
-func move_behavior(_delta: float) -> void:
+func move_behavior(delta: float) -> void:
 	sprite.flip_h = current_direction == LookDirection.Right
 	floor_raycast.position.x = current_direction * 14
-	if !is_on_floor():
-		velocity.x = 0
-		current_state = State.Falling
-		return
 	floor_raycast.force_raycast_update()
-	if is_on_wall() || !floor_raycast.is_colliding():
-		velocity.x = 0
-		current_state = State.Idle
-		return
+	if is_on_floor():
+		if is_on_wall() || !floor_raycast.is_colliding():
+			velocity.x = 0
+			current_state = State.Idle
+	else: current_state = State.Falling
 	if current_state == State.Moving || current_state == State.Falling:
-		velocity.x = lerp(velocity.x, current_direction * speed, 0.2)
+		velocity.x = lerp(velocity.x, current_direction * speed, delta*acceleration)
 
 func change_direction() -> void:
 	current_state = State.Moving

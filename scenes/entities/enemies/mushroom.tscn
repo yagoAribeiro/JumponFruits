@@ -192,7 +192,8 @@ collision_layer = 2
 script = ExtResource("2_n5iid")
 floor_raycast = NodePath("FloorRaycast")
 life_points = 1
-speed = 180.0
+speed = 200.0
+max_acceleration = 8.5
 weight = 2.0
 animation = NodePath("AnimationHandler")
 

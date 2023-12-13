@@ -47,7 +47,7 @@ func move_behavior(delta: float) -> void:
 	var direction:Vector2 = Vector2.ZERO
 	direction.x = int(Input.is_action_pressed("ui_right")) - int(Input.is_action_pressed("ui_left"))
 	current_direction = 1 if velocity.x > 0 else -1 if velocity.x < 0 else current_direction
-	velocity.x = lerp(velocity.x, direction.x*speed, clamp(delta*acceleration, 0, 1.0))
+	velocity.x = lerp(velocity.x, direction.x*speed, delta*acceleration)
 	if is_on_floor():
 		current_state = State.Idle if direction.x == 0 || is_on_wall() else State.Moving
 		mercy_jump_timer.start(mercy_jump_time)

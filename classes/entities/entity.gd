@@ -58,8 +58,6 @@ func apply_gravity(delta: float) -> void:
 		velocity.y += gravity_step
 
 func state_behavior() -> void:
-	damage_box.set_deferred("monitoring", true)
-	hit_box.set_deferred("monitorable", true)
 	match(current_state):
 		State.Idle: on_idle()
 		State.Moving: on_moving()

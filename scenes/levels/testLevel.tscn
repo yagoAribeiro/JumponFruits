@@ -35,6 +35,9 @@ debug_print = true
 [node name="mushroom" parent="entities" index="1" instance=ExtResource("7_6pic4")]
 position = Vector2(318, 6)
 
+[node name="mushroom2" parent="entities" index="2" instance=ExtResource("7_6pic4")]
+position = Vector2(18, 169)
+
 [node name="Camera2D" type="Camera2D" parent="." index="3"]
 position = Vector2(160, 87)
 zoom = Vector2(0.5, 0.5)
